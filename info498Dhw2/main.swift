@@ -8,7 +8,7 @@
 
 import Foundation
 
-
+//factorial function
 func fact(number: Int) -> (Int) {
     if (number <= 1) {
         return 1
@@ -17,8 +17,11 @@ func fact(number: Int) -> (Int) {
     return number * fact(number - 1)
 }
 
+//always prompts user until program is existed
 while(true){
-    var calcStack: [String] = [];
+    var calcStack: [String] = []; //the numbers and operations used for computing
+    
+    //first prompt (it will always be either a number or an invalid repsonse)
     print("Enter an expression separated by returns:\n")
     var response = readLine(stripNewline: true)!
     if let num = Int(response) {
@@ -29,6 +32,8 @@ while(true){
         break
     }
     
+    
+    //second prompt (will always be either an operation, number, factorial or invalid response)
     var isOperation = false;
     response = readLine(stripNewline: true)!
     if response == "+" || response == "-" || response == "*" || response == "/"  || response == "%" {
@@ -49,6 +54,9 @@ while(true){
         }
     }
     
+    //third prompt
+    
+    //if the second input was an operation, the next input will be used to complete the computation.
     if(isOperation){
     
         response = readLine(stripNewline: true)!
@@ -74,8 +82,9 @@ while(true){
         }
     }
     
+    //if the second input was a number (not an operation or factorial) we keep asking for numbers until we get "sum" or "avg"
     else{
-        var timeToCalc = false
+        var timeToCalc = false //used to end the loop
         while(!timeToCalc){
             response = readLine(stripNewline: true)!
             if(response == "sum" || response == "avg") {
@@ -103,4 +112,3 @@ while(true){
         }
     }
 }
-
